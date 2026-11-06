@@ -21,7 +21,17 @@ Validation works with Zod, Valibot, ArkType or any other Standard Schema library
 
 `NodeAdapter` from `@nestjs/platform-node` is the fastest HTTP adapter, ahead of Fastify (https://docs.nestjs.com/http/performance.md).
 
-Nest's packages are ESM only, and this project is ESM too: relative imports end in `.js`, `__dirname` doesn't exist (use `import.meta.dirname`), and tests run on Vitest, so mocks are `vi.fn()`, not `jest.fn()`.
+## Runtime: Bun
+
+This app runs on Bun, not Node. Don't use the Nest CLI to build or run it (`nest start`, `nest build`); the `package.json` scripts call Bun directly. `nest g` is still fine for generating code.
+
+- Nest's packages are ESM only, and this project is ESM too. Relative imports end in `.ts` (`./app.service.ts`). `nest g` generates `.js` imports; change them to `.ts`.
+- Never use `import type` for a class you inject through a constructor: the decorator metadata needs a runtime import, or DI receives `undefined`.
+- `__dirname` doesn't exist (ESM); use `import.meta.dirname`.
+- Tests use `bun:test`: import `describe`, `it`, `expect`, `mock` from `"bun:test"`. Mocks are `mock()`, not `vi.fn()` or `jest.fn()`.
+- Run tests with `bun run test` (from `apps/api`, or `turbo run test` from the root). Plain `bun test` from the repo root skips this app's tsconfig, and Nest decorators break.
+- Lint is `oxlint --type-aware`; `no-floating-promises` is an error, so await or `void` every promise.
+- The API listens on port 3001 (`PORT` overrides it); `apps/web` uses 3000.
 
 ## Production data: NestJS Observe
 
