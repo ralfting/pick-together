@@ -11,7 +11,7 @@
     "build": "bun build src/main.ts --target bun --outdir dist --packages external",
     "start": "bun dist/main.js",
     "test": "bun test",
-    "lint": "oxlint",
+    "lint": "oxlint --type-aware --max-warnings 0",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
