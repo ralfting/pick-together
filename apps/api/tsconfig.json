@@ -1,0 +1,22 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    // Module resolution: Bun rather than Node
+    "module": "Preserve",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    // O tsc only check types
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    // env execution
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "types": ["bun"],
+    // Needed for NestJS DI
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false
+  },
+  "include": ["src", "test"]
+}

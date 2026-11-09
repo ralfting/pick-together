@@ -14,13 +14,13 @@ You're planning a night out. You have a few places in mind, and everyone has an 
 
 ### Core rules
 
-| Rule | Behavior |
-| --- | --- |
-| Options | 2 to 4 places per pick |
-| Voters | Anyone with the link; one vote per email |
+| Rule     | Behavior                                    |
+| -------- | ------------------------------------------- |
+| Options  | 2 to 4 places per pick                      |
+| Voters   | Anyone with the link; one vote per email    |
 | Deadline | Voting closes automatically at the set time |
-| Result | Emailed to the organizer and every voter |
-| Tie | Random pick among the tied places |
+| Result   | Emailed to the organizer and every voter    |
+| Tie      | Random pick among the tied places           |
 
 ## How to run
 
@@ -40,12 +40,12 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ### Other commands
 
-| Command | What it does |
-| --- | --- |
-| `bun run build` | Production build of every app |
-| `bun run lint` | Lint every workspace |
-| `bun run check-types` | Type-check every workspace |
-| `bun run format` | Format the code with Prettier |
+| Command               | What it does                  |
+| --------------------- | ----------------------------- |
+| `bun run build`       | Production build of every app |
+| `bun run lint`        | Lint every workspace          |
+| `bun run check-types` | Type-check every workspace    |
+| `bun run format`      | Format the code with Prettier |
 
 ## Project structure
 
