@@ -32,7 +32,7 @@ services:
           path: ./apps/api/src
           target: /app/apps/api/src
         - action: rebuild
-          path: ./apps/app/api/package.json
+          path: ./apps/api/package.json
   web:
     build:
       context: .
