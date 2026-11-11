@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import type { PickModel } from "./picks.model";
+import type { PickModel } from "./picks.model.ts";
 
 const mockPick = {
   id: "1",

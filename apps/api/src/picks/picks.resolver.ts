@@ -1,6 +1,6 @@
 import { Query, Resolver } from "@nestjs/graphql";
-import { PickModel } from "./picks.model";
-import { PicksService } from "./picks.service";
+import { PickModel } from "./picks.model.ts";
+import { PicksService } from "./picks.service.ts";
 
 @Resolver(() => PickModel)
 export class PicksResolver {
