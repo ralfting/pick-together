@@ -1,0 +1,50 @@
+name: picktogether
+services:
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: picktogether
+      POSTGRES_PASSWORD: picktogether
+      POSTGRES_DB: picktogether
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U picktogether -d picktogether"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    ports:
+      - "4000:3001"
+    environment:
+      DATABASE_URL: postgres://picktogether:picktogether@postgres:5432/picktogether
+    depends_on:
+      postgres:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: sync
+          path: ./apps/api/src
+          target: /app/apps/api/src
+        - action: rebuild
+          path: ./apps/api/package.json
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "3005:3000"
+    develop:
+      watch:
+        - action: sync
+          path: ./apps/web/app
+          target: /app/apps/web/app
+        - action: rebuild
+          path: ./apps/web/package.json
+volumes:
+  pgdata:
