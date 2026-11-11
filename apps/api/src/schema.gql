@@ -20,5 +20,6 @@ type PickOption {
 }
 
 type Query {
+  pick(id: ID!): Pick
   picks: [Pick!]!
 }

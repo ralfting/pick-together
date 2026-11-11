@@ -18,4 +18,8 @@ export class PicksService {
   findAll() {
     return this.picks;
   }
+
+  findById(id: string): PickModel | null {
+    return this.picks.find((pick) => pick.id === id) ?? null;
+  }
 }
